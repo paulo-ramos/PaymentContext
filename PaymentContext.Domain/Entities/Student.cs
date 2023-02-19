@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PaymentContext.Domain.ValueObjects;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,20 +10,18 @@ namespace PaymentContext.Domain.Entities
     public class Student
     {
         private IList<Subscription> _subscriptions;
-        public Student(string documentNumber, string firstName, string lastName, string email)
+        public Student(Document documentNumber, Name name, Email email)
         {
             DocumentNumber = documentNumber;
-            FirstName = firstName;
-            LastName = lastName;
+            Name = name;
             Email = email;
             _subscriptions= new List<Subscription>();
         }
 
-        public string DocumentNumber { get; private set; } = string.Empty;
-        public string FirstName { get; private set; } = string.Empty;
-        public string LastName { get; private set; } = string.Empty;
-        public string Email { get; private set; } = string.Empty;
-        public string Address { get; private set; } = string.Empty;
+        public Document DocumentNumber { get; private set; }
+        public Name Name { get; private set; }
+        public Email Email { get; private set; }
+        public Address? Address { get; private set; }
         public IReadOnlyCollection<Subscription> Subscriptions { get { return _subscriptions.ToArray(); } }
 
         public void AssSubscription(Subscription subscription)
