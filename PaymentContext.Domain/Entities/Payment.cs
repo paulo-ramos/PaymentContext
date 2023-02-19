@@ -8,35 +8,35 @@ namespace PaymentContext.Domain.Entities
 {
     public abstract class Payment
     {
-        public string Number { get; set; }
+        public string Number { get; set; } = string.Empty;
         public DateTime PaidDate { get; set; }
         public DateTime ExpireDate { get; set; }
         public decimal Total { get; set; }
         public decimal TotalPaid { get; set; }
-        public string DocumentNumber { get; set; }
-        public string Payer { get; set; }
-        public string Address { get; set; }
-        public string Email { get; set; }
+        public string DocumentNumber { get; set; } = string.Empty;
+        public string Payer { get; set; } = string.Empty;
+        public string Address { get; set; } = string.Empty;
+        public string Email { get; set; } = string.Empty;
 
     }
 
 
     public  class BoletoPayment : Payment
     {
-        public string BarCode { get; set; }
-        public string BoletoNumber { get; set; }
+        public string BarCode { get; set; } = string.Empty;
+        public string BoletoNumber { get; set; } = string.Empty;
     }
 
     public class CreditCardPayment : Payment 
     {
-        public string CardHoldName { get; set; }
-        public string CardNumber { get; set; }
-        public string LastTransactionNumber { get; set; }
+        public string CardHoldName { get; set; } = string.Empty;
+        public string CardNumber { get; set; } = string.Empty;
+        public string LastTransactionNumber { get; set; } = string.Empty;
     }
 
     public class PayPalPayment : Payment
     {
-        public string TransactionCode { get; set; }
+        public string TransactionCode { get; set; } = string.Empty;
     }
 
 }
