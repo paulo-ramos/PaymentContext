@@ -12,7 +12,7 @@ namespace PaymentContext.Domain.Entities
             DateTime expireDate,
             decimal total,
             decimal totalPaid,
-            Document documentNumber,
+            Documento documentNumber,
             string payer,
             Address address,
             Email email)

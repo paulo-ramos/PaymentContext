@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace PaymentContext.Domain.ValueObjects 
 {
-    public class Document : ValueObject
+    public class Documento : ValueObject
     {
-        public Document(string number, EDocumentType type)
+        public Documento(string number, EDocumentType type)
         {
             Number = number;
             Type = type;
