@@ -1,4 +1,5 @@
-﻿using FluentValidation.Results;
+﻿using FluentValidation;
+using FluentValidation.Results;
 using PaymentContext.Domain.Validator;
 using PaymentContext.Domain.ValueObjects;
 using System;
@@ -27,16 +28,10 @@ namespace PaymentContext.Domain.Entities
         public Address Address { get; private set; }
         public IReadOnlyCollection<Subscription> Subscriptions { get { return _subscriptions.ToArray(); } }
 
-        public void AssSubscription(Subscription subscription)
+        public void AddSubscription(Subscription subscription)
         {
-            // se já tiver uma assinatura cancela
-
-            //cancela todas as outras assinaturas e coloca esta como principal
-            foreach(var sub in Subscriptions)
-            {
-                sub.Inactivate();
-            }
             _subscriptions.Add(subscription);
+            
         }
 
     }

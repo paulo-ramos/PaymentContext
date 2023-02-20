@@ -12,7 +12,7 @@ namespace PaymentContext.Domain.Validator
     {
         public NameValidator()
         {
-            RuleFor(name => name.FirstName).MinimumLength(3).WithMessage("O Campo nome não pode ser nulo ou menso que três caracteres.");
+            RuleFor(name => name.FirstName).MinimumLength(3).WithMessage("O Campo nome não pode ser nulo ou menor que três caracteres.");
         }
     }
 }

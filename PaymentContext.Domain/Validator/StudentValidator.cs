@@ -1,5 +1,8 @@
 ﻿using FluentValidation;
 using PaymentContext.Domain.Entities;
+using PaymentContext.Domain.Enums;
+using PaymentContext.Domain.ValueObjects;
+using PaymentContext.Shared.External;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +19,7 @@ namespace PaymentContext.Domain.Validator
             RuleFor(student => student.Name).SetValidator(new NameValidator()); 
             RuleFor(student => student.Email).SetValidator(new EmailValidator());
             RuleFor(student => student.Address).SetValidator(new AddressValidator());
+            RuleFor(student => student.Subscriptions).SetValidator(new SubscriptionValidator());                        
         }
     }
 }
