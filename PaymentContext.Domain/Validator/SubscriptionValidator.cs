@@ -11,29 +11,36 @@ using System.Threading.Tasks;
 
 namespace PaymentContext.Domain.Validator
 {
-    internal class SubscriptionValidator : AbstractValidator<IReadOnlyCollection<Subscription>>
+    internal class SubscriptionValidator : AbstractValidator<Subscription>
     {
         public SubscriptionValidator()
         {
-            RuleFor(subscription => subscription)
-                .Custom((subscription, context) =>
-                {
-                    var exists = new List<string>();
-                    foreach (var sub in subscription)
-                    {
-                        if (sub.Active)
-                        {
-                            exists.Add($"O Aluno já possui matrícula ativa, criada em [{sub.CreatedAt}].");
-                        }
-                    }
+            RuleForEach(subscription => subscription.Payments).SetValidator(new PaymentValidator());
 
-                    if (exists.Count > 1)
-                    {
-                        exists.ForEach(sub => context.AddFailure(sub));
-                    }
-                    return;
-                }
-                );
+
+            //RuleFor(subscription => subscription)
+            //    .Custom((subscription, context) =>
+            //    {
+            //        var exists = new List<string>();
+            //        foreach (var sub in subscription)
+            //        {
+            //            if (sub.Active)
+            //            {
+            //                exists.Add($"O Aluno já possui uma assinatuta ativa, criada em [{sub.CreatedAt}], expira em [{sub.ExpiredDate}].");
+            //            }
+
+            //        }
+
+            //        if (exists.Count > 1)
+            //        {
+            //            exists.ForEach(sub => context.AddFailure(sub));
+            //        }
+            //        return;
+            //    }
+            //    );
+
+
+
         }
     }
 }

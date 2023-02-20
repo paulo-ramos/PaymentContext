@@ -34,5 +34,10 @@ namespace PaymentContext.Domain.Entities
             
         }
 
+        public int CountSubscriptions()
+        {
+            return _subscriptions.Count(s => s.Active == true);
+        }
+
     }
 }
