@@ -17,30 +17,13 @@ namespace PaymentContext.Domain.Validator
         {
             RuleForEach(subscription => subscription.Payments).SetValidator(new PaymentValidator());
 
+            RuleFor(subscription => subscription.ExpiredDate)
+                .GreaterThanOrEqualTo(DateTime.Now.Date)
+                .WithMessage("Data de vencimento deve ser maior que a data atual.");
 
-            //RuleFor(subscription => subscription)
-            //    .Custom((subscription, context) =>
-            //    {
-            //        var exists = new List<string>();
-            //        foreach (var sub in subscription)
-            //        {
-            //            if (sub.Active)
-            //            {
-            //                exists.Add($"O Aluno já possui uma assinatuta ativa, criada em [{sub.CreatedAt}], expira em [{sub.ExpiredDate}].");
-            //            }
-
-            //        }
-
-            //        if (exists.Count > 1)
-            //        {
-            //            exists.ForEach(sub => context.AddFailure(sub));
-            //        }
-            //        return;
-            //    }
-            //    );
-
-
-
+            RuleFor(subscription => subscription.CountPayments())
+                .Must(countPayments => countPayments >= 1)
+                .WithMessage($"A Matrícula deve possuir uma ou mais formas de pagamento ativa.");
         }
     }
 }

@@ -40,5 +40,10 @@ namespace PaymentContext.Domain.Entities
             Active = false;
             UpdatedAt = DateTime.Now;
         }
+
+        public int CountPayments()
+        {
+            return _payments.Count(p => p.ExpireDate >= DateTime.Now.Date);
+        }
     }
 }

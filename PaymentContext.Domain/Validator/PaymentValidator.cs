@@ -17,8 +17,8 @@ namespace PaymentContext.Domain.Validator
         {
             RuleFor(payment => payment.PaidDate)
                 .NotEmpty()
-                .GreaterThan(DateTime.Now)
-                .WithMessage(payment => $"A data do pagamento deve ser futura.[{payment.PaidDate}]");
+                .GreaterThanOrEqualTo(DateTime.Now.Date)
+                .WithMessage(payment => $"A data do pagamento deve ser futura.[{payment.PaidDate}], [{DateTime.Now}]");
 
             RuleFor(payment => payment.Total)
                 .GreaterThan(0)

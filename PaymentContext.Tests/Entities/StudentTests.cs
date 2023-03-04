@@ -30,7 +30,7 @@ namespace PaymentContext.Tests.Entities
             decimal valorTotal = 100;
             decimal valorTotalPaid = 100;
 
-            var payment = new PayPalPayment("12345678901234567890", DateTime.Now.AddDays(1), DateTime.Now.AddDays(30), valorTotal, valorTotalPaid, documento, "pai do davi", address, email);
+            var payment = new PayPalPayment("12345678901234567890", DateTime.Now, DateTime.Now, valorTotal, valorTotalPaid, documento, "pai do davi", address, email);
 
             subscription1.AddPayment(payment);
             subscription2.AddPayment(payment);
