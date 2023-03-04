@@ -23,7 +23,7 @@ namespace PaymentContext.Domain.Validator
 
             RuleFor(subscription => subscription.CountPayments())
                 .Must(countPayments => countPayments >= 1)
-                .WithMessage($"A Matrícula deve possuir uma ou mais formas de pagamento ativa.");
+                .WithMessage($"Esta assinatura não possui pagamentos.");
         }
     }
 }
