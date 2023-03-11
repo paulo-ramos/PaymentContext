@@ -1,4 +1,9 @@
-﻿using PaymentContext.Domain.Enums;
+﻿using FluentValidation.Results;
+using PaymentContext.Domain.Entities;
+using PaymentContext.Domain.Enums;
+using PaymentContext.Domain.Validator;
+using PaymentContext.Domain.ValueObjects;
+using PaymentContext.Shared.Commands;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,11 +12,11 @@ using System.Threading.Tasks;
 
 namespace PaymentContext.Domain.Commands
 {
-    public class CreateBoletoSubscriptionCommand
+    public class CreateBoletoSubscriptionCommand : ICommand
     {
         public string FirstName { get; set; } = string.Empty;
         public string LastName { get; set; } = string.Empty;
-        public string Email { get; set; } = string.Empty;
+        public string StudentEmail { get; set; } = string.Empty;
 
         public string StudentDocumentNumber { get; set; } = string.Empty;
         public EDocumentType StudentDocumentType { get; set; }
@@ -35,7 +40,7 @@ namespace PaymentContext.Domain.Commands
         public string PayerDocumentNumber { get; set; } = string.Empty;
         public EDocumentType PayerDocumentType { get; set; }
         public string Payer { get; set; } = string.Empty;
-        public String PayerEmail { get; set; }
+        public String PayerEmail { get; set; } = string.Empty;
 
         public string PaymentStreet { get; set; } = string.Empty;
         public string PaymentAddressNumber { get; set; } = string.Empty;
@@ -44,6 +49,17 @@ namespace PaymentContext.Domain.Commands
         public string PaymentState { get; set; } = string.Empty;
         public string PaymentCountry { get; set; } = string.Empty;
         public string PaymentZipCode { get; set; } = string.Empty;
-        public DateTime? PaymentExpiredDate { get; set; }
+        public DateTime? PaymentExpiredDate { get; set; }        
+
+        public bool Validate()
+        {
+            Name name = new(FirstName, LastName); 
+            NameValidator validator = new();
+            ValidationResult results = validator.Validate(name);
+            return results.IsValid;
+
+
+        }
+
     }
 }

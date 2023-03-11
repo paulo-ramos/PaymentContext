@@ -35,7 +35,7 @@ namespace PaymentContext.Domain.Commands
         public string PayerDocumentNumber { get;  set; } = string.Empty;
         public EDocumentType PayerDocumentType { get;  set; }
         public string Payer { get;  set; } = string.Empty;
-        public String PayerEmail { get;  set; }
+        public String PayerEmail { get;  set; } = string.Empty;
 
         public string PaymentStreet { get;  set; } = string.Empty;
         public string PaymentAddressNumber { get;  set; } = string.Empty;

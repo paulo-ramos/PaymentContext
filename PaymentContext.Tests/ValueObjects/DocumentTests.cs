@@ -6,6 +6,7 @@ using PaymentContext.Domain.ValueObjects;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -15,10 +16,17 @@ namespace PaymentContext.Tests.ValueObjects
     public class DocumentTests
     {
         //Red, Gren, Refactor
-        [TestMethod] 
-        public void ShouldReturnErrorWhenCNPJIsInvalid()
+        [TestMethod]
+        [DataTestMethod]
+        [DataRow("68576638000100")]
+        [DataRow("68576638000101")]
+        [DataRow("68576638000102")]
+        [DataRow("68576638000103")]
+        [DataRow("68576638000104")]
+        [DataRow("68576638000105")]
+        public void ShouldReturnErrorWhenCNPJIsInvalid(string document)
         {
-            var documento = new Documento("68576638000100", EDocumentType.CNPJ);
+            var documento = new Documento(document, EDocumentType.CNPJ);
             DocumentoValidator validator = new DocumentoValidator();
             ValidationResult results = validator.Validate(documento);
 
@@ -26,9 +34,16 @@ namespace PaymentContext.Tests.ValueObjects
         }
 
         [TestMethod]
-        public void ShouldReturnSuccessWhenCNPJIsValid()
+        [DataTestMethod]
+        [DataRow("68576638000109")]
+        [DataRow("93502503000146")]
+        [DataRow("33699845000176")]
+        [DataRow("51697289000180")]
+        [DataRow("09071460000185")]
+        [DataRow("13748768000190")]
+        public void ShouldReturnSuccessWhenCNPJIsValid(string document)
         {
-            var documento = new Documento("68576638000109", EDocumentType.CNPJ);
+            var documento = new Documento(document, EDocumentType.CNPJ);
             DocumentoValidator validator = new DocumentoValidator();
             ValidationResult results = validator.Validate(documento);
 
